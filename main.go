@@ -8,6 +8,7 @@ import (
     "fmt"
     "time"
     "SkateShop/models"
+    "SkateShop/routes"
 )
 
 func main() {
@@ -42,6 +43,10 @@ func main() {
 
     // Handle db connection
     models.InitDB()
+
+    // Handle routes
+    v1 := router.Group("/api/v1")
+    routes.UserRouterGroup(v1.Group("/users"))
 
     // Will run on 8080 by default, but if a PORT environment variable
     // is defined, it will override the default.
