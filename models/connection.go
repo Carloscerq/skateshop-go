@@ -8,7 +8,7 @@ import (
     "strconv"
 )
 
-var dbConnection *gorm.DB
+var DbConnection *gorm.DB
 
 func InitDB() {
     var err error
@@ -16,14 +16,14 @@ func InitDB() {
         panic("DATABASE_URL not found")
     }
 
-    dbConnection, err = gorm.Open(mysql.Open(dbURL), &gorm.Config{}); if err != nil {
+    DbConnection, err = gorm.Open(mysql.Open(dbURL), &gorm.Config{}); if err != nil {
         panic("failed to connect database")
     }
 
     // Handle migrations
-    dbConnection.AutoMigrate(&User{})
+    DbConnection.AutoMigrate(&User{})
 
-    sqlDB, err := dbConnection.DB()
+    sqlDB, err := DbConnection.DB()
     defer sqlDB.Close()
     if err != nil {
         panic("failed to handle database")

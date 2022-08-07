@@ -4,5 +4,8 @@ import (
     "SkateShop/models"
 )
 
-func CreateUser() {
+var dbConnection = models.DbConnection
+
+func CreateUser(user *models.User) {
+    dbConnection.Create(user)
 }
