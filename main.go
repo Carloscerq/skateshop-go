@@ -2,13 +2,20 @@ package main;
 
 import (
     "github.com/gin-gonic/gin"
+    "github.com/joho/godotenv"
     "os"
     "net/http"
     "fmt"
     "time"
+    "SkateShop/models"
 )
 
 func main() {
+    err := godotenv.Load()
+    if err != nil {
+        panic("Error loading .env file")
+    }
+
     router := gin.New()
     router.Use(gin.LoggerWithFormatter(func(param gin.LogFormatterParams) string {
         // your custom format
@@ -32,6 +39,9 @@ func main() {
         }
         c.AbortWithStatus(http.StatusInternalServerError)
     }))
+
+    // Handle db connection
+    models.InitDB()
 
     // Will run on 8080 by default, but if a PORT environment variable
     // is defined, it will override the default.
