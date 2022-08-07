@@ -9,6 +9,7 @@ import (
     "time"
     "SkateShop/models"
     "SkateShop/routes"
+    "SkateShop/dto"
 )
 
 func main() {
@@ -43,6 +44,15 @@ func main() {
 
     // Handle db connection
     models.InitDB()
+    models.DbConnection.Create(&models.User{
+        Username: "admin",
+        Email: "admin.com",
+        Password: "admin",
+        Role: dto.ADMIN,
+        CreditCard: "admin",
+        Address: "admin",
+        Phone: "admin",
+    })
 
     // Handle routes
     v1 := router.Group("/api/v1")
