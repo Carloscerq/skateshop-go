@@ -11,7 +11,7 @@ func UserRouterGroup(router *gin.RouterGroup) {
     router.POST("/", createUser)
     router.GET("/:email", getUser)
     router.DELETE("/:email", deleteUser)
-    router.POST("/update/:id", updateUser)
+    router.PATCH("/:id", updateUser)
 }
 
 func createUser(c *gin.Context) {
