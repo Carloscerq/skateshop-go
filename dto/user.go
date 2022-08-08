@@ -7,11 +7,20 @@ const (
 )
 
 type NewUser struct {
-    Name string
+    Username string
     Email string
     Password string
     CreditCard string
     Address string
     Phone string
     Role UserRole
+}
+
+type UpdateUser struct {
+    Username string
+    Email string
+    Password string
+    CreditCard string
+    Address string
+    Phone string
 }
