@@ -7,6 +7,7 @@ import (
     "SkateShop/dto"
     "SkateShop/utils"
     "net/http"
+    "errors"
 )
 
 func CreateUser(user *dto.NewUser) (int, error) {
@@ -32,12 +33,18 @@ func CreateUser(user *dto.NewUser) (int, error) {
 func GetUser(email string) (*models.User, error) {
     user := models.User{}
     models.DbConnection.First(&user, "email = ?", email)
+    if user.Email == "" {
+        return nil, errors.New("User not found")
+    }
     return &user, nil
 }
 
 func GetUserByID(id string) (*models.User, error) {
     user := models.User{}
     models.DbConnection.First(&user, "uuid = ?", id)
+    if user.Email == "" {
+        return nil, errors.New("User not found")
+    }
     return &user, nil
 }
 
