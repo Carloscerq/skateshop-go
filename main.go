@@ -1,14 +1,17 @@
-package main;
+package main
 
 import (
-    "github.com/gin-gonic/gin"
-    "github.com/joho/godotenv"
-    "os"
-    "net/http"
-    "fmt"
-    "time"
-    "SkateShop/models"
-    "SkateShop/routes"
+	"SkateShop/models"
+	"SkateShop/routes"
+	"SkateShop/utils"
+	"fmt"
+	"net/http"
+	"os"
+	"time"
+	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
+	"github.com/joho/godotenv"
+        "github.com/go-playground/validator/v10"
 )
 
 func main() {
@@ -47,6 +50,11 @@ func main() {
     // Handle routes
     v1 := router.Group("/api/v1")
     routes.UserRouterGroup(v1.Group("/users"))
+
+    // Hanlde validators
+    if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
+        v.RegisterValidation("roles", utils.RoleValidator)
+    }
 
     // Will run on 8080 by default, but if a PORT environment variable
     // is defined, it will override the default.

@@ -8,12 +8,12 @@ const (
 
 type NewUser struct {
     Username string `binding:"required" json:"username"`
-    Email string `binding:"required" json:"email"`
+    Email string `binding:"required,email" json:"email"`
     Password string `binding:"required" json:"password"`
     CreditCard string `binding:"required" json:"creditCard"`
     Address string `binding:"required" json:"address"`
     Phone string `binding:"required" json:"phone"`
-    Role UserRole `binding:"required" json:"role"`
+    Role UserRole `binding:"required,roles" json:"role"`
 }
 
 type UpdateUser struct {
