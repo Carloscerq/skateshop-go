@@ -12,11 +12,12 @@ import (
 func CreateProduct(product *dto.Product) (int, error) {
     productUUID := uuid.New().String()
     newProduct := models.Product {
-        UIID:  productUUID,
+        UUID:  productUUID,
         Name: product.Name,
         Description: product.Description,
         Image: product.Image,
         Category: product.Category,
+        Price: product.Price,
     }
     result := models.DbConnection.Create(&newProduct)
     if result.Error != nil {

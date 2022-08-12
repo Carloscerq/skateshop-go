@@ -1,11 +1,10 @@
 package routes
 
 import (
-	"SkateShop/dto"
-	"SkateShop/services"
-	"net/http"
-
-	"github.com/gin-gonic/gin"
+    "SkateShop/dto"
+    "SkateShop/services"
+    "net/http"
+    "github.com/gin-gonic/gin"
 )
 
 func ProductRouterGroup(router *gin.RouterGroup) {
@@ -30,8 +29,8 @@ func CreateProduct(c *gin.Context) {
 }
 
 func GetProduct(c *gin.Context) {
-    var uuid string
-    if uuid = c.Param("id"); uuid == "" {
+    uuid := c.Param("id")
+    if uuid == "" {
         c.JSON(http.StatusBadRequest, gin.H{"message": "Invalid UUID"})
         return
     }
@@ -48,9 +47,28 @@ func GetProducts(c *gin.Context) {
 }
 
 func UpdateProduct(c *gin.Context) {
-    c.JSON(http.StatusNotImplemented, gin.H{"message": "UpdateProduct"})
+    var product dto.Product
+    uuid := c.Param("id")
+    if err := c.ShouldBindJSON(&product); err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
+        return
+    }
+    err := services.UpdateProduct(&product, uuid); if err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
+        return
+    }
+    c.JSON(http.StatusOK, gin.H{"message": "Product updated successfully"})
 }
 
 func DeleteProduct(c *gin.Context) {
-    c.JSON(http.StatusNotImplemented, gin.H{"message": "DeleteProduct"})
+    uuid := c.Param("id")
+    if uuid == "" {
+        c.JSON(http.StatusBadRequest, gin.H{"message": "Invalid UUID"})
+        return
+    }
+    err := services.DeleteProduct(uuid); if err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
+        return
+    }
+    c.JSON(http.StatusOK, gin.H{"message": "Product deleted successfully"})
 }
