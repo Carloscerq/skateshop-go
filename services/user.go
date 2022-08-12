@@ -28,7 +28,7 @@ func CreateUser(user *dto.NewUser) (int, error) {
     }
     result := models.DbConnection.Create(&newUser)
     if result.Error != nil {
-        return http.StatusInternalServerError, result.Error
+        return http.StatusInternalServerError, errors.New("Error creating user")
     }
     return http.StatusOK, nil
 }

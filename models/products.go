@@ -1,10 +1,14 @@
 package models
 
+import (
+    "SkateShop/dto"
+)
+
 type Product struct {
     UIID string `json:"id" gorm:"primary_key"`
     Name string `json:"name"`
     Description string `json:"description"`
     Price float64 `json:"price"`
     Image string `json:"image"`
-    Category string `json:"category"`
+    Category dto.Category `json:"category"`
 }
