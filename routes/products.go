@@ -1,8 +1,11 @@
 package routes
 
 import (
-    "net/http"
-    "github.com/gin-gonic/gin"
+	"SkateShop/dto"
+	"SkateShop/services"
+	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 func ProductRouterGroup(router *gin.RouterGroup) {
@@ -14,7 +17,16 @@ func ProductRouterGroup(router *gin.RouterGroup) {
 }
 
 func GetProducts(c *gin.Context) {
-    c.JSON(http.StatusNotImplemented, gin.H{"message": "GetProducts"})
+    var newProduct dto.Product
+    if err := c.ShouldBindJSON(&newProduct); err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
+        return
+    }
+    response, err := services.CreateProduct(&newProduct); if err != nil {
+        c.JSON(response, gin.H{"message": err.Error()})
+        return
+    }
+    c.JSON(response, gin.H{"message": "Product created successfully"})
 }
 
 func GetProduct(c *gin.Context) {
