@@ -16,7 +16,7 @@ func ProductRouterGroup(router *gin.RouterGroup) {
     router.DELETE("/:id", DeleteProduct)
 }
 
-func GetProducts(c *gin.Context) {
+func CreateProduct(c *gin.Context) {
     var newProduct dto.Product
     if err := c.ShouldBindJSON(&newProduct); err != nil {
         c.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
@@ -30,11 +30,21 @@ func GetProducts(c *gin.Context) {
 }
 
 func GetProduct(c *gin.Context) {
-    c.JSON(http.StatusNotImplemented, gin.H{"message": "GetProduct"})
+    var uuid string
+    if uuid = c.Param("id"); uuid == "" {
+        c.JSON(http.StatusBadRequest, gin.H{"message": "Invalid UUID"})
+        return
+    }
+    response, err := services.GetProduct(uuid); if err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
+        return
+    }
+    c.JSON(http.StatusOK, gin.H{"message": response})
 }
 
-func CreateProduct(c *gin.Context) {
-    c.JSON(http.StatusNotImplemented, gin.H{"message": "CreateProduct"})
+func GetProducts(c *gin.Context) {
+    response := services.GetProducts()
+    c.JSON(http.StatusOK, gin.H{"message": response})
 }
 
 func UpdateProduct(c *gin.Context) {
