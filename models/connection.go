@@ -20,4 +20,5 @@ func InitDB() {
 
     // Handle migrations
     DbConnection.AutoMigrate(&User{})
+    DbConnection.AutoMigrate(&Product{})
 }
