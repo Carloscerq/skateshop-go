@@ -1,0 +1,309 @@
+_type: export
+__export_format: 4
+__export_date: 2022-08-13T04:08:17.228Z
+__export_source: insomnia.desktop.app:v2022.5.0
+resources:
+  - _id: req_22917c21e4954de7bbbdc6443deffe25
+    parentId: fld_bbdf3e4f6c804a32874213745a8190e5
+    modified: 1660363646468
+    created: 1660363393073
+    url: "{{url}}/products/573b2193-379c-46b0-872d-d594802d603e"
+    name: Delete
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1660363245328
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_bbdf3e4f6c804a32874213745a8190e5
+    parentId: wrk_5d530ccd39d44085bdbe1560dc1e26cb
+    modified: 1660363242536
+    created: 1660363242536
+    name: Product
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1660363242536
+    _type: request_group
+  - _id: wrk_5d530ccd39d44085bdbe1560dc1e26cb
+    parentId: null
+    modified: 1660164131216
+    created: 1660164131216
+    name: New Document
+    description: ""
+    scope: design
+    _type: workspace
+  - _id: req_797bc90911e043e49ff11c9ebbe1a957
+    parentId: fld_bbdf3e4f6c804a32874213745a8190e5
+    modified: 1660363641795
+    created: 1660363364634
+    url: "{{url}}/products/573b2193-379c-46b0-872d-d594802d603e"
+    name: Update
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "Shape 1",
+        	"price": 150.99,
+        	"description": "Maple",
+        	"tags": "Maple",
+        	"category": "shape"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_52d1deaddff842aa9f01c73a8a6588e4
+    authentication: {}
+    metaSortKey: -1660363245278
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_2b3b83ac2df74ab4a53f9923f9393195
+    parentId: fld_bbdf3e4f6c804a32874213745a8190e5
+    modified: 1660363615979
+    created: 1660363285505
+    url: "{{url}}/products"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "Shape 1",
+        	"price": 150.99,
+        	"description": "Maple",
+        	"tags": "Maple",
+        	"category": "shape"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_258e76521c17434ab91bb6ce879d4464
+    authentication: {}
+    metaSortKey: -1660363245228
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_6ae12350827248e3b0266b2e24928e97
+    parentId: fld_bbdf3e4f6c804a32874213745a8190e5
+    modified: 1660363637985
+    created: 1660363264370
+    url: "{{url}}/products/573b2193-379c-46b0-872d-d594802d603e"
+    name: Get from id
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1660363245178
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_786b1878eba347e29f693ee6ff1a11fa
+    parentId: fld_bbdf3e4f6c804a32874213745a8190e5
+    modified: 1660363276950
+    created: 1660363245128
+    url: "{{url}}/products"
+    name: Get All
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1660363245128
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_6ca469a2e01c49ad868712e03a4186a5
+    parentId: fld_23527e579ac2411993411e87bac49fac
+    modified: 1660190763937
+    created: 1660190750234
+    url: "{{url}}/users/ce.cesc01@gmail.com"
+    name: Delete
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1660164131342
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_23527e579ac2411993411e87bac49fac
+    parentId: wrk_5d530ccd39d44085bdbe1560dc1e26cb
+    modified: 1660164799355
+    created: 1660164799355
+    name: User
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1660164799356
+    _type: request_group
+  - _id: req_114140e99f654ac4baa0f09537e4e65b
+    parentId: fld_23527e579ac2411993411e87bac49fac
+    modified: 1660190793002
+    created: 1660190691233
+    url: "{{url}}/users/807d18cc-f120-485f-9c92-8383ea01b1c4"
+    name: Update
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"username": "Carlos",
+        	"email": "ce.cesc01@gmail.com",
+        	"password": "password",
+        	"creditCard": "1234567890",
+        	"phone": "1234567890",
+        	"role": "admin1",
+        	"address": "strt 1"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_55a97c79d68440b2bcaa70e5d33bc80c
+    authentication: {}
+    metaSortKey: -1660164131292
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_84253bcde9ae44c2b58430099b91673a
+    parentId: fld_23527e579ac2411993411e87bac49fac
+    modified: 1660165464165
+    created: 1660164131242
+    url: "{{url}}/users/ce.cesc01@gmail.com"
+    name: Get
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1660164131242
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a867debc9a32485488a74a663b9426d8
+    parentId: fld_23527e579ac2411993411e87bac49fac
+    modified: 1660351054433
+    created: 1660164890414
+    url: "{{url}}/users"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"username": "Carlos",
+        	"email": "ce.cesc01@gmail.com",
+        	"password": "password",
+        	"creditCard": "1234567890",
+        	"phone": "1234567890",
+        	"role": "admin1",
+        	"address": "strt 1"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_a5e6db2f43b0448aa2bc1f6a45aae653
+    authentication: {}
+    metaSortKey: -1660164131192
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_367ce962d1931177368b94684b5229d6d1451f50
+    parentId: wrk_5d530ccd39d44085bdbe1560dc1e26cb
+    modified: 1660164858494
+    created: 1660164131232
+    name: Base Environment
+    data:
+      url: http://localhost:8080/api/v1
+    dataPropertyOrder:
+      "&":
+        - url
+    color: null
+    isPrivate: false
+    metaSortKey: 1660164131232
+    _type: environment
+  - _id: jar_367ce962d1931177368b94684b5229d6d1451f50
+    parentId: wrk_5d530ccd39d44085bdbe1560dc1e26cb
+    modified: 1660164131238
+    created: 1660164131238
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_7ec6fbf1f6204c57af2ec96a8fe03c5f
+    parentId: wrk_5d530ccd39d44085bdbe1560dc1e26cb
+    modified: 1660164793466
+    created: 1660164131228
+    fileName: Go Skateshop
+    contents: ""
+    contentType: yaml
+    _type: api_spec
+  - _id: uts_785e0fc6a9b9448fbba812b309e805b3
+    parentId: wrk_5d530ccd39d44085bdbe1560dc1e26cb
+    modified: 1660164131244
+    created: 1660164131244
+    name: Example Test Suite
+    _type: unit_test_suite

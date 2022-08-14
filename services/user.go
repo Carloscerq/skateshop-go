@@ -64,3 +64,12 @@ func UpdateUser(user *dto.UpdateUser, id string) (error) {
     models.DbConnection.Save(&oldUser)
     return nil
 }
+
+func addToken(token string, userid string) error {
+    user, err := GetUserByID(userid); if err != nil {
+        return err
+    }
+    user.Token = token
+    models.DbConnection.Save(&user)
+    return nil
+}

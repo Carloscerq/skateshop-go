@@ -13,4 +13,5 @@ type User struct {
     Address string `json:"address"`
     Phone string `json:"phone" gorm:"unique"`
     Role dto.UserRole `json:"role"`
+    Token string `json:"token"`
 }

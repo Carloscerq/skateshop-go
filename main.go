@@ -51,6 +51,7 @@ func main() {
     v1 := router.Group("/api/v1")
     routes.UserRouterGroup(v1.Group("/users"))
     routes.ProductRouterGroup(v1.Group("/products"))
+    routes.AuthRouterGroup(v1.Group("/auth"))
 
     // Hanlde validators
     if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
