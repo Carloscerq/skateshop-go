@@ -15,7 +15,13 @@ func Login(email string, password string) (string, error) {
     if err != nil || !utils.CheckHash(password, user.Password) {
         return "", errors.New("Invalid credentials")
     }
-    return generateToken(user)
+
+    token, err := generateToken(user)
+    if err != nil {
+        return "", errors.New("Error generating token")
+    }
+    addToken(token, user.UUID)
+    return token, nil
 }
 
 func generateToken(user *models.User) (string, error) {
