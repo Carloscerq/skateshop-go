@@ -10,3 +10,8 @@ type UserClaim struct {
     UserEmail string `json:"email"`
     UserName string `json:"username"`
 }
+
+type UserLoginDto struct {
+    Email string `json:"email"`
+    Password string `json:"password"`
+}
