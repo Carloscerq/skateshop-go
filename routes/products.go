@@ -10,9 +10,9 @@ import (
 func ProductRouterGroup(router *gin.RouterGroup) {
     router.GET("/", getProducts)
     router.GET("/:id", getProduct)
-    router.POST("/", createProduct)
-    router.PATCH("/:id", updateProduct)
-    router.DELETE("/:id", deleteProduct)
+    router.POST("/", services.LoginMiddleware(), createProduct)
+    router.PATCH("/:id", services.LoginMiddleware(), updateProduct)
+    router.DELETE("/:id", services.LoginMiddleware(), deleteProduct)
 }
 
 func createProduct(c *gin.Context) {

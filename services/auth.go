@@ -1,13 +1,16 @@
 package services
 
 import (
-    "SkateShop/dto"
-    "SkateShop/models"
-    "SkateShop/utils"
-    "errors"
-    "time"
-    "os"
-    "github.com/golang-jwt/jwt"
+	"SkateShop/dto"
+	"SkateShop/models"
+	"SkateShop/utils"
+	"errors"
+	"os"
+	"strings"
+	"time"
+
+	"github.com/gin-gonic/gin"
+	"github.com/golang-jwt/jwt"
 )
 
 func Login(email string, password string) (string, error) {
@@ -36,4 +39,23 @@ func generateToken(user *models.User) (string, error) {
     }
     token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
     return token.SignedString([]byte(os.Getenv("JWT_SECRET")))
+}
+
+func LoginMiddleware() gin.HandlerFunc {
+    return func(c *gin.Context) {
+        token := strings.Split(c.Request.Header.Get("Authorization"), " ")[1]
+        if token == "" {
+            c.AbortWithStatus(401)
+            return
+        }
+        claims := &dto.UserClaim{}
+        _, err := jwt.ParseWithClaims(token, claims, func(token *jwt.Token) (interface{}, error) {
+            return []byte(os.Getenv("JWT_SECRET")), nil
+        } )
+        if err != nil {
+            c.AbortWithStatus(401)
+            return
+        }
+        c.Set("user", claims)
+    }
 }

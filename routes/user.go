@@ -10,8 +10,8 @@ import (
 func UserRouterGroup(router *gin.RouterGroup) {
     router.POST("/", createUser)
     router.GET("/:email", getUser)
-    router.DELETE("/:email", deleteUser)
-    router.PATCH("/:id", updateUser)
+    router.DELETE("/:email", services.LoginMiddleware(), deleteUser)
+    router.PATCH("/:id", services.LoginMiddleware(), updateUser)
 }
 
 func createUser(c *gin.Context) {
