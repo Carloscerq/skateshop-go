@@ -18,6 +18,7 @@ func CreateProduct(product *dto.Product) (int, error) {
         Image: product.Image,
         Category: product.Category,
         Price: product.Price,
+        Stock: 0,
     }
     result := models.DbConnection.Create(&newProduct)
     if result.Error != nil {
@@ -52,5 +53,17 @@ func UpdateProduct(product *dto.Product, uuid string) (error) {
     }
     copier.Copy(&oldProduct, product)
     models.DbConnection.Save(&oldProduct)
+    return nil
+}
+
+func ChangeStock(request *dto.ProductRequest) (error) {
+    product, err := GetProduct(request.ProductID); if err != nil {
+        return err
+    }
+    if uint(request.Amount) + product.Stock < 0 {
+        return errors.New("Not enough stock")
+    }
+    product.Stock += uint(request.Amount)
+    models.DbConnection.Save(&product)
     return nil
 }

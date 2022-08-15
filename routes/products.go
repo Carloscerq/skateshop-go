@@ -13,6 +13,7 @@ func ProductRouterGroup(router *gin.RouterGroup) {
     router.POST("/", services.LoginMiddleware(), createProduct)
     router.PATCH("/:id", services.LoginMiddleware(), updateProduct)
     router.DELETE("/:id", services.LoginMiddleware(), deleteProduct)
+    router.POST("/stock", services.LoginMiddleware(), changeStock)
 }
 
 func createProduct(c *gin.Context) {
@@ -71,4 +72,23 @@ func deleteProduct(c *gin.Context) {
         return
     }
     c.JSON(http.StatusOK, gin.H{"message": "Product deleted successfully"})
+}
+
+func changeStock(c *gin.Context) {
+    var productRequest dto.ProductRequest
+    if err := c.ShouldBindJSON(&productRequest); err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
+        return
+    }
+
+    if productRequest.Amount < 0 {
+        c.JSON(http.StatusBadRequest, gin.H{"message": "Invalid amount"})
+        return
+    }
+
+    err := services.ChangeStock(&productRequest); if err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
+        return
+    }
+    c.JSON(http.StatusOK, gin.H{"message": "Stock updated successfully"})
 }

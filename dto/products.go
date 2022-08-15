@@ -16,3 +16,7 @@ type Product struct {
     Category Category `binding:"category" json:"category"`
 }
 
+type ProductRequest struct {
+    ProductID string `binding:"required" json:"product_id"`
+    Amount int `binding:"required" json:"amount"`
+}

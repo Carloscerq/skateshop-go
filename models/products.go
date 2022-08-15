@@ -11,4 +11,5 @@ type Product struct {
     Price float64 `json:"price"`
     Image string `json:"image"`
     Category dto.Category `json:"category"`
+    Stock uint `json:"stock"`
 }
