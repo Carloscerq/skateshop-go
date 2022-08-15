@@ -18,6 +18,7 @@ func CreateProduct(product *dto.Product) (int, error) {
         Image: product.Image,
         Category: product.Category,
         Price: product.Price,
+        Stock: 0,
     }
     result := models.DbConnection.Create(&newProduct)
     if result.Error != nil {
