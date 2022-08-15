@@ -55,3 +55,15 @@ func UpdateProduct(product *dto.Product, uuid string) (error) {
     models.DbConnection.Save(&oldProduct)
     return nil
 }
+
+func ChangeStock(request *dto.ProductRequest) (error) {
+    product, err := GetProduct(request.ProductID); if err != nil {
+        return err
+    }
+    if uint(request.Amount) + product.Stock < 0 {
+        return errors.New("Not enough stock")
+    }
+    product.Stock += uint(request.Amount)
+    models.DbConnection.Save(&product)
+    return nil
+}

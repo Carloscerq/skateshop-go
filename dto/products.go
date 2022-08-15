@@ -17,6 +17,6 @@ type Product struct {
 }
 
 type ProductRequest struct {
-    ProductID string `json:"product_id"`
-    Amount uint `json:"amount"`
+    ProductID string `binding:"required" json:"product_id"`
+    Amount int `binding:"required" json:"amount"`
 }
