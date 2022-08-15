@@ -43,13 +43,13 @@ func generateToken(user *models.User) (string, error) {
 
 func LoginMiddleware() gin.HandlerFunc {
     return func(c *gin.Context) {
-        token := strings.Split(c.Request.Header.Get("Authorization"), " ")[1]
-        if token == "" {
+        token := strings.Split(c.Request.Header.Get("Authorization"), " ")
+        if len(token) != 2 {
             c.AbortWithStatus(401)
             return
         }
         claims := &dto.UserClaim{}
-        _, err := jwt.ParseWithClaims(token, claims, func(token *jwt.Token) (interface{}, error) {
+        _, err := jwt.ParseWithClaims(token[1], claims, func(token *jwt.Token) (interface{}, error) {
             return []byte(os.Getenv("JWT_SECRET")), nil
         } )
         if err != nil {
